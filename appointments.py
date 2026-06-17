@@ -23,10 +23,11 @@ def book_appointment(
 ):
 
     new_appointment = Appointment(
-        patient_name=appointment.patient_name,
-        doctor_name=appointment.doctor_name,
-        appointment_date=appointment.appointment_date
-    )
+    patient_name=appointment.patient_name,
+    doctor_name=appointment.doctor_name,
+    appointment_date=appointment.appointment_date,
+    status="Confirmed"
+)
 
     db.add(new_appointment)
     db.commit()

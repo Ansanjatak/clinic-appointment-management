@@ -2,11 +2,10 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from passlib.context import CryptContext
 from auth import create_access_token
-from passlib.context import CryptContext
 from database import SessionLocal
 from models import User
-from schemas import UserCreate
-from schemas import UserCreate, LoginUser
+from schemas import UserCreate, UserLogin
+
 
 router = APIRouter()
 
@@ -48,9 +47,10 @@ def register(
         "message": "User Registered Successfully",
         "user_id": new_user.id
     }
+
 @router.post("/login")
 def login(
-    user: LoginUser,
+    user: UserLogin,
     db: Session = Depends(get_db)
 ):
 

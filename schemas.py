@@ -15,6 +15,6 @@ class AppointmentCreate(BaseModel):
     doctor_name: str
     appointment_date: date
     
-class LoginUser(BaseModel):
+class UserLogin(BaseModel):
     email: str
     password: str

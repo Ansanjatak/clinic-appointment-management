@@ -25,3 +25,5 @@ class Appointment(Base):
     patient_name = Column(String)
     doctor_name = Column(String)
     appointment_date = Column(Date)
+
+    status = Column(String, default="Pending")
