@@ -1,17 +1,24 @@
-from jose import jwt
+from jose import JWTError, jwt
 from datetime import datetime, timedelta
+import os
 
-SECRET_KEY = "mysecretkey"
-ALGORITHM = "HS256"
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
 
-def create_access_token(data):
+
+def create_access_token(data: dict):
+    to_encode = data.copy()
 
     expire = datetime.utcnow() + timedelta(minutes=30)
 
-    data.update({"exp": expire})
+    to_encode.update({
+        "exp": expire
+    })
 
-    return jwt.encode(
-        data,
+    encoded_jwt = jwt.encode(
+        to_encode,
         SECRET_KEY,
         algorithm=ALGORITHM
     )
+
+    return encoded_jwt
